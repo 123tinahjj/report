@@ -2,1524 +2,760 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>بلاغات مباني طرابلس</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مايا - الآلة الحاسبة الذكية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        :root {
-            --primary: #1a5276;
-            --secondary: #e74c3c;
-            --accent: #3498db;
-            --light: #f8f9fa;
-            --dark: #2c3e50;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --gray: #95a5a6;
-            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: var(--light);
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: #333;
-            line-height: 1.5;
-            font-size: 14px;
-            padding-bottom: 70px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
         
         .container {
             width: 100%;
-            padding: 0 15px;
-        }
-        
-        /* Mobile Header */
-        .mobile-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-            color: white;
-            padding: 15px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .header-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .header-title i {
-            font-size: 24px;
-            color: var(--accent);
-        }
-        
-        .header-title h1 {
-            font-size: 18px;
-        }
-        
-        .header-title span {
-            color: var(--accent);
-            font-size: 14px;
-        }
-        
-        /* Mobile Menu */
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-        
-        .menu-toggle:active {
-            background: rgba(255,255,255,0.1);
-        }
-        
-        .mobile-menu {
-            position: fixed;
-            top: 60px;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: calc(100vh - 60px);
-            background: white;
-            box-shadow: -3px 0 15px rgba(0,0,0,0.1);
-            transition: right 0.3s ease;
-            z-index: 999;
-            overflow-y: auto;
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .menu-overlay {
-            position: fixed;
-            top: 60px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 60px);
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 998;
-        }
-        
-        .menu-overlay.active {
-            display: block;
-        }
-        
-        .menu-items {
-            list-style: none;
-        }
-        
-        .menu-items li {
-            border-bottom: 1px solid #eee;
-        }
-        
-        .menu-items a {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 18px 20px;
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: background 0.2s;
-        }
-        
-        .menu-items a:active {
-            background: #f5f5f5;
-        }
-        
-        .menu-items a i {
-            width: 24px;
-            color: var(--accent);
-        }
-        
-        .menu-footer {
-            padding: 20px;
-            text-align: center;
-            color: var(--gray);
-            font-size: 12px;
-            border-top: 1px solid #eee;
-            margin-top: 20px;
-        }
-        
-        /* Main Content */
-        .main-content {
-            margin-top: 70px;
-            padding: 15px 0;
-        }
-        
-        .section {
-            margin-bottom: 25px;
-        }
-        
-        .section-title {
-            font-size: 18px;
-            color: var(--primary);
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-title i {
-            color: var(--accent);
-        }
-        
-        /* Card Styles */
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 15px;
-            border-top: 4px solid var(--accent);
-        }
-        
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 15px;
-        }
-        
-        .form-label.required:after {
-            content: " *";
-            color: var(--danger);
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            transition: border 0.3s;
-            background: #fafafa;
-        }
-        
-        .form-input:focus {
-            border-color: var(--accent);
-            outline: none;
-            background: white;
-        }
-        
-        textarea.form-input {
-            min-height: 100px;
-            resize: vertical;
-            font-family: 'Cairo', sans-serif;
-        }
-        
-        .form-select {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            background: #fafafa;
-            color: #333;
-        }
-        
-        /* Location Button */
-        .location-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 14px;
-            background: #e8f4fc;
-            border: 2px dashed var(--accent);
-            border-radius: 8px;
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 15px;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .location-btn:active {
-            background: #d4eaf7;
-            transform: scale(0.98);
-        }
-        
-        /* Danger Level */
-        .danger-level {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .danger-option {
-            flex: 1;
-        }
-        
-        .danger-option input {
-            display: none;
-        }
-        
-        .danger-option label {
-            display: block;
-            padding: 14px 5px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 600;
-            font-size: 14px;
-            border: 2px solid transparent;
-        }
-        
-        .danger-low label {
-            background-color: rgba(39, 174, 96, 0.1);
-            color: var(--success);
-        }
-        
-        .danger-medium label {
-            background-color: rgba(243, 156, 18, 0.1);
-            color: var(--warning);
-        }
-        
-        .danger-high label {
-            background-color: rgba(231, 76, 60, 0.1);
-            color: var(--danger);
-        }
-        
-        .danger-option input:checked + label {
-            border-color: currentColor;
-            transform: scale(0.95);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        }
-        
-        /* Photo Upload */
-        .photo-upload {
-            border: 2px dashed #ddd;
-            border-radius: 8px;
-            padding: 25px 15px;
-            text-align: center;
-            background: #fafafa;
-            margin-top: 10px;
-        }
-        
-        .photo-upload input {
-            display: none;
-        }
-        
-        .upload-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-        }
-        
-        .upload-label i {
-            font-size: 40px;
-            color: var(--accent);
-        }
-        
-        .upload-text h4 {
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .upload-text p {
-            color: var(--gray);
-            font-size: 13px;
-        }
-        
-        .photos-preview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .photo-item {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            position: relative;
-            border: 2px solid #eee;
         }
         
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .remove-photo {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            background: rgba(0,0,0,0.6);
+        header {
+            background: linear-gradient(to right, #4a6ee0, #8a5de3);
             color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .language-selector {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            width: 24px;
-            height: 24px;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #4a6ee0;
+        }
+        
+        .assistant-section {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .assistant-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to right, #4a6ee0, #8a5de3);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
         
-        /* Submit Buttons */
-        .submit-buttons {
+        .voice-controls {
             display: flex;
+            flex-direction: column;
             gap: 10px;
-            margin-top: 25px;
+            align-items: center;
         }
         
-        .btn {
-            flex: 1;
-            padding: 16px;
+        .voice-btn {
+            background: linear-gradient(to right, #4a6ee0, #8a5de3);
+            color: white;
             border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 16px;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(74, 110, 224, 0.4);
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
         }
         
-        .btn:active {
-            transform: scale(0.98);
+        .voice-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(74, 110, 224, 0.6);
         }
         
-        .btn-primary {
-            background: var(--primary);
-            color: white;
+        .voice-btn.listening {
+            animation: pulse 1.5s infinite;
+            background: linear-gradient(to right, #ff4757, #ff3838);
         }
         
-        .btn-primary:active {
-            background: #154360;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
         }
         
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-        }
-        
-        .btn-whatsapp:active {
-            background: #1da851;
-        }
-        
-        /* Emergency Card */
-        .emergency-card {
-            background: linear-gradient(135deg, #ff6b6b 0%, #e74c3c 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-        }
-        
-        .emergency-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .emergency-header i {
-            font-size: 24px;
-        }
-        
-        .emergency-numbers {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .emergency-number {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 8px;
-            font-weight: 600;
-        }
-        
-        .emergency-call {
-            background: white;
-            color: var(--danger);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: 700;
+        .status {
             font-size: 14px;
-            cursor: pointer;
-        }
-        
-        /* Contact Channels */
-        .contact-channels {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .channel {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 18px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
-        }
-        
-        .channel-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-        
-        .channel-info h4 {
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        
-        .channel-info p {
-            color: var(--dark);
-            font-weight: 600;
-            direction: ltr;
-            text-align: left;
-        }
-        
-        .channel-action {
+            color: #666;
+            text-align: center;
+            min-height: 20px;
             margin-top: 5px;
         }
         
-        .action-btn {
-            padding: 8px 15px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
+        .conversation {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #eaeaea;
         }
         
-        /* Stats */
-        .stats-grid {
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+        
+        .user-message {
+            background-color: #e3f2fd;
+            margin-left: auto;
+            margin-right: 0;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .maya-message {
+            background-color: #f1f3f4;
+            margin-right: auto;
+            margin-left: 0;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .calculator-section {
+            padding: 25px;
+        }
+        
+        .display {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: right;
+            font-size: 32px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow-x: auto;
+            border: 2px solid #eaeaea;
+            font-weight: 600;
+        }
+        
+        .buttons {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
         
-        .stat-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-        
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 10px 0;
-        }
-        
-        .stat-label {
-            font-size: 13px;
-            color: var(--gray);
-            font-weight: 600;
-        }
-        
-        /* Footer */
-        .mobile-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            border-top: 2px solid var(--accent);
-            padding: 10px 15px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-        
-        .footer-nav {
-            display: flex;
-            justify-content: space-around;
-        }
-        
-        .footer-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            text-decoration: none;
-            color: var(--gray);
-            font-size: 12px;
-            padding: 5px 10px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        
-        .footer-nav-item:active {
-            background: #f0f0f0;
-            color: var(--primary);
-        }
-        
-        .footer-nav-item.active {
-            color: var(--accent);
-        }
-        
-        .footer-nav-item i {
-            font-size: 20px;
-        }
-        
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 20px;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            animation: modalSlide 0.3s ease;
-        }
-        
-        @keyframes modalSlide {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .modal-icon {
-            font-size: 60px;
-            color: var(--success);
-            margin-bottom: 20px;
-        }
-        
-        .modal-title {
-            font-size: 20px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .tracking-number {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--danger);
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            letter-spacing: 2px;
-            direction: ltr;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 25px;
-        }
-        
-        .modal-btn {
-            flex: 1;
-            padding: 14px;
+        button {
             border: none;
-            border-radius: 8px;
-            font-weight: 700;
+            border-radius: 10px;
+            padding: 18px 5px;
+            font-size: 20px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .modal-btn-primary {
-            background: var(--primary);
-            color: white;
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
         }
         
-        .modal-btn-secondary {
-            background: #e0e0e0;
+        .number {
+            background-color: #f8f9fa;
             color: #333;
         }
         
-        /* Utility */
-        .divider {
-            height: 1px;
-            background: #eee;
-            margin: 20px 0;
+        .operation {
+            background-color: #e3f2fd;
+            color: #4a6ee0;
         }
         
-        .hidden {
-            display: none;
+        .equals {
+            background: linear-gradient(to right, #4a6ee0, #8a5de3);
+            color: white;
+            grid-column: span 2;
         }
         
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .clear {
+            background-color: #ffebee;
+            color: #ff4757;
         }
         
-        .fade-in {
-            animation: fadeIn 0.3s ease;
+        .voice-command {
+            background-color: #f3e5f5;
+            color: #8a5de3;
         }
         
-        /* Swipe indicator */
-        .swipe-indicator {
+        footer {
             text-align: center;
-            color: var(--gray);
-            font-size: 12px;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 15px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .language-selector {
+                position: static;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .display {
+                font-size: 28px;
+                padding: 15px;
+                min-height: 70px;
+            }
+            
+            button {
+                padding: 15px 5px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Header -->
-    <header class="mobile-header">
-        <div class="header-title">
-            <i class="fas fa-building-crack"></i>
-            <div>
-                <h1>بلاغات المباني</h1>
-                <span>طرابلس</span>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-robot"></i> مايا - الآلة الحاسبة الذكية</h1>
+            <p>تحدث مع مايا لإجراء العمليات الحسابية</p>
+            <div class="language-selector">
+                <button class="lang-btn active" id="arabic-btn">العربية</button>
+                <button class="lang-btn" id="english-btn">English</button>
             </div>
-        </div>
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-    <nav class="mobile-menu" id="mobileMenu">
-        <ul class="menu-items">
-            <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
-            <li><a href="#report"><i class="fas fa-flag"></i> تقديم بلاغ جديد</a></li>
-            <li><a href="#emergency"><i class="fas fa-phone-emergency"></i> أرقام الطوارئ</a></li>
-            <li><a href="#contact"><i class="fas fa-comments"></i> قنوات التواصل</a></li>
-            <li><a href="#stats"><i class="fas fa-chart-bar"></i> الإحصاءات</a></li>
-            <li><a href="#about"><i class="fas fa-info-circle"></i> عن المبادرة</a></li>
-            <li><a href="#developer"><i class="fas fa-code"></i> عن المطور</a></li>
-            <li><a href="#guide"><i class="fas fa-book"></i> دليل الاستخدام</a></li>
-        </ul>
-        <div class="menu-footer">
-            <p>مبادرة مجتمعية لسلامة سكان طرابلس</p>
-            <p style="margin-top: 5px; font-size: 11px;">تم التطوير بواسطة: محمد علي حلاق</p>
-            <p style="margin-top: 5px; font-size: 11px;">© 2023 جميع الحقوق محفوظة</p>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content container" id="mainContent">
-        <!-- Home Section -->
-        <section id="home" class="section">
-            <h2 class="section-title"><i class="fas fa-house-damage"></i> الخطر يهدد مباني طرابلس</h2>
-            <div class="card">
-                <p style="margin-bottom: 15px; text-align: justify;">
-                    العديد من المباني في طرابلس مهددة بالانهيار بسبب الإهمال وعدم الصيانة. ساهم معنا في إنقاذ الأرواح من خلال الإبلاغ عن أي مبنى تشعر أنه يشكل خطراً.
-                </p>
-                <div style="background: #e8f4fc; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid var(--accent);">
-                    <p style="color: var(--primary); font-weight: 600; margin-bottom: 10px;"><i class="fas fa-lightbulb"></i> كيف تعرف أن المبنى خطير؟</p>
-                    <ul style="padding-right: 20px; color: #555;">
-                        <li>شروخ كبيرة في الجدران أو الأعمدة</li>
-                        <li>تساقط أجزاء من الواجهة</li>
-                        <li>انزياح الأعمدة الحاملة</li>
-                        <li>تشققات في الأساسات</li>
-                    </ul>
+        </header>
+        
+        <section class="assistant-section">
+            <div class="assistant-header">
+                <div class="avatar">
+                    <i class="fas fa-robot"></i>
                 </div>
-                <a href="#report" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
-                    <i class="fas fa-plus-circle"></i> تقديم بلاغ جديد
-                </a>
-            </div>
-        </section>
-
-        <!-- Report Form -->
-        <section id="report" class="section">
-            <h2 class="section-title"><i class="fas fa-edit"></i> نموذج البلاغ</h2>
-            <div class="card">
-                <form id="reportForm">
-                    <!-- Personal Info -->
-                    <div class="form-group">
-                        <label class="form-label required">الاسم الكامل</label>
-                        <input type="text" class="form-input" id="name" placeholder="أدخل اسمك الكامل" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">رقم الهاتف</label>
-                        <input type="tel" class="form-input" id="phone" placeholder="مثال: 03xxxxxx" required>
-                    </div>
-                    
-                    <!-- Address -->
-                    <div class="form-group">
-                        <label class="form-label required">عنوان المبنى</label>
-                        <textarea class="form-input" id="address" placeholder="الشارع، المنطقة، الطابق، أي معلومات تفصيلية" required></textarea>
-                    </div>
-                    
-                    <!-- Location -->
-                    <div class="form-group">
-                        <label class="form-label">تحديد الموقع</label>
-                        <button type="button" class="location-btn" id="getLocation">
-                            <i class="fas fa-map-marker-alt"></i> تحديد موقعي الآن
-                        </button>
-                        <input type="text" class="form-input" id="location" placeholder="إحداثيات الموقع" style="margin-top: 10px;" readonly>
-                    </div>
-                    
-                    <!-- Problem Type -->
-                    <div class="form-group">
-                        <label class="form-label required">نوع المشكلة</label>
-                        <select class="form-select" id="problemType" required>
-                            <option value="" disabled selected>اختر نوع المشكلة</option>
-                            <option value="cracks">شروخ في الجدران/الأعمدة</option>
-                            <option value="foundation">مشاكل في الأساسات</option>
-                            <option value="columns">انزياح الأعمدة</option>
-                            <option value="balcony">شرفات مهددة بالسقوط</option>
-                            <option value="roof">تلف في السقف</option>
-                            <option value="facade">تساقط الواجهة</option>
-                            <option value="other">أخرى</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Danger Level -->
-                    <div class="form-group">
-                        <label class="form-label required">درجة الخطورة</label>
-                        <div class="danger-level">
-                            <div class="danger-option">
-                                <input type="radio" id="danger-low" name="danger" value="منخفضة">
-                                <label for="danger-low">منخفضة</label>
-                            </div>
-                            <div class="danger-option">
-                                <input type="radio" id="danger-medium" name="danger" value="متوسطة" checked>
-                                <label for="danger-medium">متوسطة</label>
-                            </div>
-                            <div class="danger-option">
-                                <input type="radio" id="danger-high" name="danger" value="عالية">
-                                <label for="danger-high">عالية</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Photos -->
-                    <div class="form-group">
-                        <label class="form-label">إرفاق صور (اختياري)</label>
-                        <div class="photo-upload">
-                            <input type="file" id="photoInput" accept="image/*" multiple>
-                            <label for="photoInput" class="upload-label">
-                                <i class="fas fa-camera"></i>
-                                <div class="upload-text">
-                                    <h4>أضف صور المشكلة</h4>
-                                    <p>انقر لرفع الصور (حتى 5 صور)</p>
-                                </div>
-                            </label>
-                            <div class="photos-preview" id="photosPreview"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Details -->
-                    <div class="form-group">
-                        <label class="form-label">تفاصيل إضافية</label>
-                        <textarea class="form-input" id="details" placeholder="أضف أي معلومات إضافية عن حالة المبنى..."></textarea>
-                    </div>
-                    
-                    <!-- Submit Buttons -->
-                    <div class="submit-buttons">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> حفظ البلاغ
-                        </button>
-                        <button type="button" class="btn btn-whatsapp" id="sendWhatsApp">
-                            <i class="fab fa-whatsapp"></i> إرسال واتساب
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-        <!-- Emergency Numbers -->
-        <section id="emergency" class="section">
-            <h2 class="section-title"><i class="fas fa-phone-emergency"></i> أرقام الطوارئ</h2>
-            <div class="emergency-card">
-                <div class="emergency-header">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h3>في حالة الخطر المباشر</h3>
-                </div>
-                <div class="emergency-numbers">
-                    <div class="emergency-number">
-                        <span>الدفاع المدني</span>
-                        <button class="emergency-call" onclick="callNumber('125')">
-                            <i class="fas fa-phone"></i> اتصل 125
-                        </button>
-                    </div>
-                    <div class="emergency-number">
-                        <span>الطوارئ</span>
-                        <button class="emergency-call" onclick="callNumber('112')">
-                            <i class="fas fa-phone"></i> اتصل 112
-                        </button>
-                    </div>
-                    <div class="emergency-number">
-                        <span>الصليب الأحمر</span>
-                        <button class="emergency-call" onclick="callNumber('140')">
-                            <i class="fas fa-phone"></i> اتصل 140
-                        </button>
-                    </div>
+                <div>
+                    <h3>مساعدتك مايا</h3>
+                    <p>انقر على زر الميكروفون وابدأ بالتحدث</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Channels -->
-        <section id="contact" class="section">
-            <h2 class="section-title"><i class="fas fa-comments"></i> قنوات التواصل</h2>
-            <div class="contact-channels">
-                <div class="channel">
-                    <div class="channel-icon" style="background: #25D366;">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="channel-info">
-                        <h4>واتساب</h4>
-                        <p>+961 71897079</p>
-                        <div class="channel-action">
-                            <button class="action-btn" onclick="openWhatsApp()">
-                                <i class="fab fa-whatsapp"></i> فتح واتساب
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="channel">
-                    <div class="channel-icon" style="background: #3498db;">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="channel-info">
-                        <h4>اتصال مباشر</h4>
-                        <p>06625542</p>
-                        <div class="channel-action">
-                            <button class="action-btn" onclick="callNumber('06625542')">
-                                <i class="fas fa-phone"></i> اتصل الآن
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="channel">
-                    <div class="channel-icon" style="background: #9b59b6;">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="channel-info">
-                        <h4>الموقع الجغرافي</h4>
-                        <p>طرابلس - لبنان</p>
-                        <div class="channel-action">
-                            <button class="action-btn" onclick="openMap()">
-                                <i class="fas fa-map"></i> فتح الخريطة
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Statistics -->
-        <section id="stats" class="section">
-            <h2 class="section-title"><i class="fas fa-chart-bar"></i> إحصاءات البلاغات</h2>
-            <div class="card">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <i class="fas fa-flag" style="color: var(--accent); font-size: 24px;"></i>
-                        <div class="stat-value" id="totalReports">158</div>
-                        <div class="stat-label">إجمالي البلاغات</div>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-exclamation-triangle" style="color: var(--danger); font-size: 24px;"></i>
-                        <div class="stat-value" id="highDanger">67</div>
-                        <div class="stat-label">بلاغات عالية الخطورة</div>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-check-circle" style="color: var(--success); font-size: 24px;"></i>
-                        <div class="stat-value" id="followedUp">49</div>
-                        <div class="stat-label">تم المتابعة</div>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-building" style="color: var(--primary); font-size: 24px;"></i>
-                        <div class="stat-value" id="areas">16</div>
-                        <div class="stat-label">منطقة مبلَّغ عنها</div>
-                    </div>
-                </div>
-                <div class="swipe-indicator">
-                    <i class="fas fa-arrows-left-right"></i> اسحب لليمين لرؤية المزيد
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section">
-            <h2 class="section-title"><i class="fas fa-info-circle"></i> عن المبادرة</h2>
-            <div class="card">
-                <p style="text-align: justify; margin-bottom: 15px;">
-                    مبادرة مجتمعية أطلقتها مجموعة من النشطاء في طرابلس لمواجهة خطر انهيار المباني المتهالكة. هدفنا حماية الأرواح والممتلكات من خلال توثيق البلاغات وتحويلها للجهات المعنية.
-                </p>
-                <div style="background: #f0f7ff; padding: 15px; border-radius: 8px;">
-                    <p style="color: var(--primary); font-weight: 600; margin-bottom: 10px;"><i class="fas fa-shield-alt"></i> خصوصيتك مهمة لنا:</p>
-                    <ul style="padding-right: 20px; color: #555;">
-                        <li>لا نشارك بياناتك الشخصية مع أحد</li>
-                        <li>نستخدم المعلومات فقط للتواصل مع الجهات الرسمية</li>
-                        <li>يمكنك طلب حذف بياناتك في أي وقت</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Developer Section -->
-        <section id="developer" class="section">
-            <h2 class="section-title"><i class="fas fa-code"></i> عن المطور</h2>
-            <div class="card">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                        <i class="fas fa-laptop-code" style="font-size: 40px; color: white;"></i>
-                    </div>
-                    <h3 style="color: var(--primary); margin-bottom: 5px;">محمد علي حلاق</h3>
-                    <p style="color: var(--gray);">مواطن من طرابلس</p>
-                </div>
-                
-                <p style="text-align: justify; margin-bottom: 15px; line-height: 1.8;">
-                    <i class="fas fa-heart" style="color: var(--danger); margin-left: 5px;"></i>
-                    ابن مدينة طرابلس الذي طور هذا التطبيق مجاناً بدافع حبه لمدينته واهتمامه بأهلها. 
-                    يعمل محمد في شركة ماركيت الميناء في قسم الكول سنتر، وهو أيضاً مبرمج ويب متخصص.
-                </p>
-                
-                <div style="background: #f0f7ff; padding: 15px; border-radius: 8px; margin: 15px 0;">
-                    <p style="color: var(--primary); font-weight: 600; margin-bottom: 10px;">
-                        <i class="fas fa-briefcase"></i> معلومات المهنة:
-                    </p>
-                    <ul style="padding-right: 20px; color: #555;">
-                        <li>يعمل في شركة ماركيت الميناء (كول سنتر)</li>
-                        <li>مبرمج ويب متخصص</li>
-                        <li>طور هذا التطبيق لخدمة مدينة طرابلس وأهلها</li>
-                    </ul>
-                </div>
-                
-                <div style="background: #e8f6ef; padding: 15px; border-radius: 8px;">
-                    <p style="color: var(--primary); font-weight: 600; margin-bottom: 10px;">
-                        <i class="fas fa-address-card"></i> معلومات الاتصال:
-                    </p>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-phone" style="color: var(--success);"></i>
-                            <span style="direction: ltr; font-weight: 600;">+961 81 400 899</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-envelope" style="color: var(--danger);"></i>
-                            <span style="font-weight: 600;">mhammadhallak085@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 20px; text-align: center;">
-                    <button class="action-btn" onclick="contactDeveloper()" style="background: var(--primary);">
-                        <i class="fas fa-envelope"></i> التواصل مع المطور
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="modal-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h2 class="modal-title">تم استلام بلاغك بنجاح!</h2>
-            <p>شكراً لك على مساهمتك في حماية أرواح سكان طرابلس. سيتم متابعة بلاغك مع الجهات المعنية.</p>
-            <div class="tracking-number" id="trackingNumber">TR-0000</div>
-            <p style="color: #666; font-size: 14px;">احفظ هذا الرقم لمتابعة حالة بلاغك</p>
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-primary" onclick="closeModal()">
-                    <i class="fas fa-check"></i> تم
+            
+            <div class="voice-controls">
+                <button class="voice-btn" id="voice-btn">
+                    <i class="fas fa-microphone"></i>
                 </button>
-                <button class="modal-btn modal-btn-secondary" onclick="shareReport()">
-                    <i class="fas fa-share"></i> مشاركة
-                </button>
+                <div class="status" id="status">انقر على الميكروفون وابدأ بالتحدث</div>
             </div>
-        </div>
+            
+            <div class="conversation" id="conversation">
+                <div class="message maya-message">مرحبًا! أنا مايا، مساعدتك الذكية. قل "مرحبا مايا" ثم اطلب مني إجراء عملية حسابية مثل "١٢٣ ناقص ١٢٠"</div>
+            </div>
+        </section>
+        
+        <section class="calculator-section">
+            <div class="display" id="display">0</div>
+            
+            <div class="buttons">
+                <button class="clear" onclick="clearDisplay()">C</button>
+                <button class="clear" onclick="deleteLast()"><i class="fas fa-backspace"></i></button>
+                <button class="operation" onclick="appendToDisplay('/')">÷</button>
+                <button class="operation" onclick="appendToDisplay('*')">×</button>
+                
+                <button class="number" onclick="appendToDisplay('7')">7</button>
+                <button class="number" onclick="appendToDisplay('8')">8</button>
+                <button class="number" onclick="appendToDisplay('9')">9</button>
+                <button class="operation" onclick="appendToDisplay('-')">-</button>
+                
+                <button class="number" onclick="appendToDisplay('4')">4</button>
+                <button class="number" onclick="appendToDisplay('5')">5</button>
+                <button class="number" onclick="appendToDisplay('6')">6</button>
+                <button class="operation" onclick="appendToDisplay('+')">+</button>
+                
+                <button class="number" onclick="appendToDisplay('1')">1</button>
+                <button class="number" onclick="appendToDisplay('2')">2</button>
+                <button class="number" onclick="appendToDisplay('3')">3</button>
+                <button class="number" onclick="appendToDisplay('0')">0</button>
+                
+                <button class="number" onclick="appendToDisplay('.')">.</button>
+                <button class="equals" onclick="calculate()">=</button>
+                <button class="voice-command" onclick="startVoiceCommand()"><i class="fas fa-microphone"></i></button>
+            </div>
+        </section>
     </div>
-
-    <!-- Mobile Footer -->
-    <footer class="mobile-footer">
-        <nav class="footer-nav">
-            <a href="#home" class="footer-nav-item active">
-                <i class="fas fa-home"></i>
-                <span>الرئيسية</span>
-            </a>
-            <a href="#report" class="footer-nav-item">
-                <i class="fas fa-plus-circle"></i>
-                <span>بلاغ جديد</span>
-            </a>
-            <a href="#emergency" class="footer-nav-item">
-                <i class="fas fa-phone"></i>
-                <span>طوارئ</span>
-            </a>
-            <a href="#contact" class="footer-nav-item">
-                <i class="fas fa-comments"></i>
-                <span>تواصل</span>
-            </a>
-        </nav>
+    
+    <footer>
+        <p>تم التطوير باستخدام HTML, CSS, و JavaScript | مايا - الآلة الحاسبة الذكية</p>
     </footer>
 
     <script>
-        // Mobile Menu
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
+        // العناصر الأساسية في الصفحة
+        const display = document.getElementById('display');
+        const voiceBtn = document.getElementById('voice-btn');
+        const status = document.getElementById('status');
+        const conversation = document.getElementById('conversation');
+        const arabicBtn = document.getElementById('arabic-btn');
+        const englishBtn = document.getElementById('english-btn');
         
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-        });
+        // متغيرات التطبيق
+        let currentLanguage = 'arabic';
+        let recognition = null;
+        let isListening = false;
+        let displayValue = '0';
+        let lastResult = null;
         
-        menuOverlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        
-        // Close menu when clicking a link
-        document.querySelectorAll('.menu-items a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-            });
-        });
-        
-        // Footer Navigation
-        document.querySelectorAll('.footer-nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all items
-                document.querySelectorAll('.footer-nav-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                // Scroll to section
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    window.scrollTo({
-                        top: targetSection.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Get User Location
-        const getLocationBtn = document.getElementById('getLocation');
-        const locationInput = document.getElementById('location');
-        
-        getLocationBtn.addEventListener('click', () => {
-            if (navigator.geolocation) {
-                getLocationBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحديد...';
-                
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const lat = position.coords.latitude;
-                        const lng = position.coords.longitude;
-                        locationInput.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-                        getLocationBtn.innerHTML = '<i class="fas fa-check-circle"></i> تم تحديد الموقع';
-                        getLocationBtn.style.background = '#e8f6ef';
-                        getLocationBtn.style.borderColor = '#27ae60';
-                        getLocationBtn.style.color = '#27ae60';
-                        
-                        // Show Google Maps link
-                        setTimeout(() => {
-                            const mapsLink = document.createElement('a');
-                            mapsLink.href = `https://maps.google.com/?q=${lat},${lng}`;
-                            mapsLink.target = '_blank';
-                            mapsLink.innerHTML = '<i class="fas fa-external-link-alt"></i> عرض على خرائط جوجل';
-                            mapsLink.style.display = 'block';
-                            mapsLink.style.marginTop = '10px';
-                            mapsLink.style.color = 'var(--accent)';
-                            mapsLink.style.textDecoration = 'none';
-                            mapsLink.style.fontSize = '13px';
-                            getLocationBtn.parentNode.appendChild(mapsLink);
-                        }, 500);
-                    },
-                    (error) => {
-                        let errorMsg = 'تعذر تحديد الموقع';
-                        switch(error.code) {
-                            case error.PERMISSION_DENIED:
-                                errorMsg = 'تم رفض الإذن. يرجى السماح بالوصول إلى الموقع';
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                errorMsg = 'معلومات الموقع غير متوفرة';
-                                break;
-                            case error.TIMEOUT:
-                                errorMsg = 'انتهت مهلة طلب الموقع';
-                                break;
-                        }
-                        getLocationBtn.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorMsg}`;
-                        getLocationBtn.style.background = '#fdeaea';
-                        getLocationBtn.style.borderColor = '#e74c3c';
-                        getLocationBtn.style.color = '#e74c3c';
-                        
-                        setTimeout(() => {
-                            getLocationBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي الآن';
-                            getLocationBtn.style.background = '#e8f4fc';
-                            getLocationBtn.style.borderColor = 'var(--accent)';
-                            getLocationBtn.style.color = 'var(--accent)';
-                        }, 3000);
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 0
-                    }
-                );
-            } else {
-                locationInput.value = 'المتصفح لا يدخدم تحديد الموقع';
-            }
-        });
-        
-        // Photo Upload
-        const photoInput = document.getElementById('photoInput');
-        const photosPreview = document.getElementById('photosPreview');
-        const maxPhotos = 5;
-        let uploadedPhotos = [];
-        
-        photoInput.addEventListener('change', function(e) {
-            const files = Array.from(e.target.files);
-            const remainingSlots = maxPhotos - uploadedPhotos.length;
-            const filesToAdd = files.slice(0, remainingSlots);
+        // تهيئة Web Speech API
+        function initializeSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             
-            filesToAdd.forEach(file => {
-                if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                    alert('حجم الصورة كبير جداً (الحد الأقصى 5MB)');
-                    return;
-                }
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const photo = {
-                        id: Date.now(),
-                        data: e.target.result,
-                        name: file.name
-                    };
-                    
-                    uploadedPhotos.push(photo);
-                    updatePhotosPreview();
-                };
-                reader.readAsDataURL(file);
-            });
-            
-            // Reset input
-            photoInput.value = '';
-        });
-        
-        function updatePhotosPreview() {
-            photosPreview.innerHTML = '';
-            
-            uploadedPhotos.forEach((photo, index) => {
-                const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
-                photoItem.innerHTML = `
-                    <img src="${photo.data}" alt="صورة البلاغ">
-                    <button class="remove-photo" onclick="removePhoto(${index})">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                photosPreview.appendChild(photoItem);
-            });
-            
-            // Update upload text
-            const uploadText = document.querySelector('.upload-text h4');
-            if (uploadedPhotos.length > 0) {
-                uploadText.textContent = `${uploadedPhotos.length} صور مرفوعة (${maxPhotos - uploadedPhotos.length} متبقي)`;
-            } else {
-                uploadText.textContent = 'أضف صور المشكلة';
-            }
-        }
-        
-        function removePhoto(index) {
-            uploadedPhotos.splice(index, 1);
-            updatePhotosPreview();
-        }
-        
-        // Form Submission
-        const reportForm = document.getElementById('reportForm');
-        const successModal = document.getElementById('successModal');
-        const trackingNumber = document.getElementById('trackingNumber');
-        
-        reportForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate form
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const problemType = document.getElementById('problemType').value;
-            
-            if (!name || !phone || !address || !problemType) {
-                alert('يرجى ملء جميع الحقول الإلزامية');
+            if (!SpeechRecognition) {
+                status.textContent = 'متصفحك لا يدعم التعرف على الصوت. يرجى استخدام Chrome أو Edge.';
+                voiceBtn.disabled = true;
                 return;
             }
             
-            // Generate tracking number
-            const trackingNum = 'TR-' + Math.floor(1000 + Math.random() * 9000);
-            trackingNumber.textContent = trackingNum;
+            recognition = new SpeechRecognition();
+            recognition.lang = currentLanguage === 'arabic' ? 'ar-SA' : 'en-US';
+            recognition.continuous = false;
+            recognition.interimResults = false;
             
-            // Update statistics
-            updateStatistics();
-            
-            // Store report locally (in real app, send to server)
-            const reportData = {
-                id: Date.now(),
-                name,
-                phone,
-                address,
-                location: document.getElementById('location').value,
-                problemType,
-                dangerLevel: document.querySelector('input[name="danger"]:checked').value,
-                details: document.getElementById('details').value,
-                photos: uploadedPhotos,
-                trackingNumber: trackingNum,
-                timestamp: new Date().toLocaleString('ar-LB'),
-                status: 'جديد'
+            recognition.onstart = function() {
+                isListening = true;
+                voiceBtn.classList.add('listening');
+                status.textContent = currentLanguage === 'arabic' ? 'مايا تستمع إليك...' : 'Maya is listening...';
             };
             
-            // Save to localStorage
-            const reports = JSON.parse(localStorage.getItem('buildingReports') || '[]');
-            reports.push(reportData);
-            localStorage.setItem('buildingReports', JSON.stringify(reports));
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                processVoiceCommand(transcript);
+            };
             
-            // Show success modal
-            successModal.classList.add('active');
+            recognition.onerror = function(event) {
+                console.error('خطأ في التعرف على الصوت:', event.error);
+                status.textContent = currentLanguage === 'arabic' ? 'حدث خطأ، يرجى المحاولة مرة أخرى' : 'An error occurred, please try again';
+                stopListening();
+            };
             
-            // Reset form after 1 second
+            recognition.onend = function() {
+                stopListening();
+            };
+        }
+        
+        // بدء الاستماع للصوت
+        function startListening() {
+            if (!recognition) {
+                initializeSpeechRecognition();
+            }
+            
+            if (isListening) {
+                stopListening();
+                return;
+            }
+            
+            try {
+                recognition.lang = currentLanguage === 'arabic' ? 'ar-SA' : 'en-US';
+                recognition.start();
+            } catch (error) {
+                console.error('خطأ في بدء الاستماع:', error);
+                status.textContent = currentLanguage === 'arabic' ? 'حدث خطأ في بدء الاستماع' : 'Error starting listening';
+            }
+        }
+        
+        // إيقاف الاستماع
+        function stopListening() {
+            if (recognition && isListening) {
+                try {
+                    recognition.stop();
+                } catch (error) {
+                    console.error('خطأ في إيقاف الاستماع:', error);
+                }
+            }
+            
+            isListening = false;
+            voiceBtn.classList.remove('listening');
+            status.textContent = currentLanguage === 'arabic' ? 'انقر على الميكروفون وابدأ بالتحدث' : 'Click the microphone and start speaking';
+        }
+        
+        // معالجة الأوامر الصوتية
+        function processVoiceCommand(transcript) {
+            // إضافة رسالة المستخدم للمحادثة
+            addMessageToConversation(transcript, 'user');
+            
+            // تنظيف النص من علامات الترقيم والتحويل للأحرف اللاتينية للأرقام العربية
+            let cleanTranscript = transcript.toLowerCase();
+            
+            // استبدال الأرق العربية بالأرقام الإنجليزية للحساب
+            cleanTranscript = cleanTranscript
+                .replace(/[٠١٢٣٤٥٦٧٨٩]/g, function(d) {
+                    return String.fromCharCode(d.charCodeAt(0) - 1632);
+                })
+                .replace(/[۰۱۲۳۴۵۶۷۸۹]/g, function(d) {
+                    return String.fromCharCode(d.charCodeAt(0) - 1776);
+                });
+            
+            // تحويل الأوامر العربية والإنجليزية
+            if (currentLanguage === 'arabic') {
+                // معالجة الأوامر العربية
+                if (cleanTranscript.includes('مرحبا') && cleanTranscript.includes('مايا')) {
+                    const response = 'أهلاً بك! أنا مايا، مساعدتك الذكية. كيف يمكنني مساعدتك اليوم؟';
+                    speak(response);
+                    addMessageToConversation(response, 'maya');
+                    return;
+                }
+                
+                if (cleanTranscript.includes('احسب') || cleanTranscript.includes('حساب') || cleanTranscript.includes('كم')) {
+                    // استخراج التعبير الرياضي من النص
+                    let expression = extractMathExpression(cleanTranscript, 'arabic');
+                    
+                    if (expression) {
+                        try {
+                            // حساب النتيجة
+                            const result = eval(expression);
+                            lastResult = result;
+                            
+                            // تحديث العرض
+                            displayValue = String(result);
+                            updateDisplay();
+                            
+                            // التحدث بالنتيجة
+                            const response = `الناتج هو ${convertToArabicNumber(result)}`;
+                            speak(response);
+                            addMessageToConversation(response, 'maya');
+                        } catch (error) {
+                            const response = 'عذراً، لم أفهم العملية الحسابية. يرجى المحاولة مرة أخرى.';
+                            speak(response);
+                            addMessageToConversation(response, 'maya');
+                        }
+                    } else {
+                        const response = 'لم أستطع التعرف على العملية الحسابية. يرجى قول شيء مثل "١٢٣ زائد ١٢٠" أو "٥٠ ناقص ٢٠".';
+                        speak(response);
+                        addMessageToConversation(response, 'maya');
+                    }
+                } else {
+                    const response = 'يمكنني مساعدتك في العمليات الحسابية. قل لي مثلاً "احسب لي ١٢٣ زائد ١٢٠"';
+                    speak(response);
+                    addMessageToConversation(response, 'maya');
+                }
+            } else {
+                // معالجة الأوامر الإنجليزية
+                if (cleanTranscript.includes('hello') && cleanTranscript.includes('maya')) {
+                    const response = 'Hello! I am Maya, your smart assistant. How can I help you today?';
+                    speak(response);
+                    addMessageToConversation(response, 'maya');
+                    return;
+                }
+                
+                if (cleanTranscript.includes('calculate') || cleanTranscript.includes('what is') || cleanTranscript.includes('how much')) {
+                    // استخراج التعبير الرياضي من النص
+                    let expression = extractMathExpression(cleanTranscript, 'english');
+                    
+                    if (expression) {
+                        try {
+                            // حساب النتيجة
+                            const result = eval(expression);
+                            lastResult = result;
+                            
+                            // تحديث العرض
+                            displayValue = String(result);
+                            updateDisplay();
+                            
+                            // التحدث بالنتيجة
+                            const response = `The result is ${result}`;
+                            speak(response);
+                            addMessageToConversation(response, 'maya');
+                        } catch (error) {
+                            const response = 'Sorry, I did not understand the calculation. Please try again.';
+                            speak(response);
+                            addMessageToConversation(response, 'maya');
+                        }
+                    } else {
+                        const response = 'I could not recognize the mathematical operation. Please say something like "123 plus 120" or "50 minus 20".';
+                        speak(response);
+                        addMessageToConversation(response, 'maya');
+                    }
+                } else {
+                    const response = 'I can help you with calculations. Tell me for example "calculate 123 plus 120"';
+                    speak(response);
+                    addMessageToConversation(response, 'maya');
+                }
+            }
+        }
+        
+        // استخراج التعبير الرياضي من النص
+        function extractMathExpression(text, language) {
+            // إزالة الكلمات غير المرغوبة
+            let cleanedText = text.replace(/calculate|what is|how much|equals|احسب|حساب|كم|يساوي/g, '');
+            
+            // استبدال الكلمات بعمليات رياضية
+            if (language === 'arabic') {
+                cleanedText = cleanedText
+                    .replace(/\s+/g, '')
+                    .replace(/زائد|plus|\+/, '+')
+                    .replace(/ناقص|minus|\-/, '-')
+                    .replace(/ضرب|multipliedby|\*|x/, '*')
+                    .replace(/على|dividedby|\//, '/')
+                    .replace(/فاصلة|point|\./, '.');
+            } else {
+                cleanedText = cleanedText
+                    .replace(/\s+/g, '')
+                    .replace(/plus|\+/, '+')
+                    .replace(/minus|\-/, '-')
+                    .replace(/multipliedby|\*|x/, '*')
+                    .replace(/dividedby|\//, '/')
+                    .replace(/point|\./, '.');
+            }
+            
+            // التحقق من أن النص يحتوي على أرقام وعمليات رياضية فقط
+            const mathRegex = /^[\d\+\-\*\/\.]+$/;
+            if (mathRegex.test(cleanedText)) {
+                return cleanedText;
+            }
+            
+            return null;
+        }
+        
+        // التحدث بالنص
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const speech = new SpeechSynthesisUtterance();
+                speech.text = text;
+                speech.lang = currentLanguage === 'arabic' ? 'ar-SA' : 'en-US';
+                speech.rate = 0.9;
+                speech.pitch = 1;
+                speech.volume = 1;
+                
+                window.speechSynthesis.speak(speech);
+            }
+        }
+        
+        // إضافة رسالة للمحادثة
+        function addMessageToConversation(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'maya-message');
+            messageDiv.textContent = text;
+            
+            conversation.appendChild(messageDiv);
+            conversation.scrollTop = conversation.scrollHeight;
+        }
+        
+        // تحويل الأرقام للعربية
+        function convertToArabicNumber(num) {
+            const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            const decimalPoint = '٫';
+            
+            return String(num).replace(/\d/g, digit => arabicNumbers[digit]).replace('.', decimalPoint);
+        }
+        
+        // تحديث العرض
+        function updateDisplay() {
+            if (currentLanguage === 'arabic') {
+                display.textContent = convertToArabicNumber(displayValue);
+            } else {
+                display.textContent = displayValue;
+            }
+        }
+        
+        // إضافة قيمة للعرض
+        function appendToDisplay(value) {
+            if (displayValue === '0' || displayValue === '٠') {
+                displayValue = value;
+            } else {
+                displayValue += value;
+            }
+            updateDisplay();
+        }
+        
+        // مسح العرض
+        function clearDisplay() {
+            displayValue = '0';
+            updateDisplay();
+        }
+        
+        // حذف آخر قيمة
+        function deleteLast() {
+            if (displayValue.length > 1) {
+                displayValue = displayValue.slice(0, -1);
+            } else {
+                displayValue = '0';
+            }
+            updateDisplay();
+        }
+        
+        // حساب النتيجة
+        function calculate() {
+            try {
+                // استبدال الرموز غير القياسية
+                let expression = displayValue
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/٫/g, '.');
+                
+                // تحويل الأرقام العربية للإنجليزية للحساب
+                expression = expression.replace(/[٠١٢٣٤٥٦٧٨٩]/g, function(d) {
+                    return String.fromCharCode(d.charCodeAt(0) - 1632);
+                });
+                
+                const result = eval(expression);
+                displayValue = String(result);
+                lastResult = result;
+                updateDisplay();
+                
+                // إضافة للمحادثة
+                const userMessage = currentLanguage === 'arabic' ? 
+                    `احسب ${displayValue}` : `Calculate ${displayValue}`;
+                addMessageToConversation(userMessage, 'user');
+                
+                const mayaMessage = currentLanguage === 'arabic' ? 
+                    `الناتج هو ${convertToArabicNumber(result)}` : `The result is ${result}`;
+                addMessageToConversation(mayaMessage, 'maya');
+                speak(mayaMessage);
+            } catch (error) {
+                displayValue = currentLanguage === 'arabic' ? 'خطأ' : 'Error';
+                updateDisplay();
+                
+                const errorMessage = currentLanguage === 'arabic' ? 
+                    'عذراً، هناك خطأ في العملية الحسابية' : 'Sorry, there is an error in the calculation';
+                addMessageToConversation(errorMessage, 'maya');
+                speak(errorMessage);
+            }
+        }
+        
+        // بدء الأمر الصوتي من زر الحاسبة
+        function startVoiceCommand() {
+            startListening();
+        }
+        
+        // تغيير اللغة
+        arabicBtn.addEventListener('click', function() {
+            currentLanguage = 'arabic';
+            arabicBtn.classList.add('active');
+            englishBtn.classList.remove('active');
+            document.documentElement.lang = 'ar';
+            document.documentElement.dir = 'rtl';
+            
+            // تحديث النصوص
+            document.querySelector('h1').innerHTML = '<i class="fas fa-robot"></i> مايا - الآلة الحاسبة الذكية';
+            document.querySelector('header p').textContent = 'تحدث مع مايا لإجراء العمليات الحسابية';
+            document.querySelector('.assistant-header h3').textContent = 'مساعدتك مايا';
+            document.querySelector('.assistant-header p').textContent = 'انقر على زر الميكروفون وابدأ بالتحدث';
+            status.textContent = 'انقر على الميكروفون وابدأ بالتحدث';
+            
+            // تحديث العرض
+            updateDisplay();
+            
+            // تحديث التعرف على الكلام
+            if (recognition) {
+                recognition.lang = 'ar-SA';
+            }
+        });
+        
+        englishBtn.addEventListener('click', function() {
+            currentLanguage = 'english';
+            englishBtn.classList.add('active');
+            arabicBtn.classList.remove('active');
+            document.documentElement.lang = 'en';
+            document.documentElement.dir = 'ltr';
+            
+            // تحديث النصوص
+            document.querySelector('h1').innerHTML = '<i class="fas fa-robot"></i> Maya - Smart Calculator';
+            document.querySelector('header p').textContent = 'Talk to Maya to perform calculations';
+            document.querySelector('.assistant-header h3').textContent = 'Your Assistant Maya';
+            document.querySelector('.assistant-header p').textContent = 'Click the microphone and start speaking';
+            status.textContent = 'Click the microphone and start speaking';
+            
+            // تحديث العرض
+            updateDisplay();
+            
+            // تحديث التعرف على الكلام
+            if (recognition) {
+                recognition.lang = 'en-US';
+            }
+        });
+        
+        // إضافة مستمع حدث لزر الصوت
+        voiceBtn.addEventListener('click', startListening);
+        
+        // تهيئة التطبيق عند التحميل
+        window.addEventListener('load', function() {
+            initializeSpeechRecognition();
+            updateDisplay();
+            
+            // رسالة ترحيبية عند التحميل
             setTimeout(() => {
-                reportForm.reset();
-                uploadedPhotos = [];
-                updatePhotosPreview();
-                locationInput.value = '';
-                getLocationBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي الآن';
-                getLocationBtn.style.background = '#e8f4fc';
-                getLocationBtn.style.borderColor = 'var(--accent)';
-                getLocationBtn.style.color = 'var(--accent)';
+                const welcomeMessage = currentLanguage === 'arabic' ? 
+                    'مرحباً! أنا مايا، مساعدتك الذكية. قل "مرحبا مايا" ثم اطلب مني إجراء عملية حسابية.' : 
+                    'Hello! I am Maya, your smart assistant. Say "hello Maya" then ask me to perform a calculation.';
+                speak(welcomeMessage);
             }, 1000);
         });
-        
-        // Send via WhatsApp
-        document.getElementById('sendWhatsApp').addEventListener('click', function() {
-            const name = document.getElementById('name').value || 'لم يتم الإدخال';
-            const phone = document.getElementById('phone').value || 'لم يتم الإدخال';
-            const address = document.getElementById('address').value || 'لم يتم الإدخال';
-            const problemType = document.getElementById('problemType').value || 'لم يتم الإدخال';
-            const dangerLevel = document.querySelector('input[name="danger"]:checked').value || 'لم يتم الإدخال';
-            const details = document.getElementById('details').value || 'لا توجد تفاصيل إضافية';
-            const location = document.getElementById('location').value || 'لم يتم التحديد';
-            
-            // Generate message for WhatsApp
-            const message = `*بلاغ مبنى خطر - طرابلس*
-            
-*الاسم:* ${name}
-*الهاتف:* ${phone}
-*العنوان:* ${address}
-*الموقع:* ${location}
-*نوع المشكلة:* ${problemType}
-*درجة الخطورة:* ${dangerLevel}
-*التفاصيل:* ${details}
-
-*تم الإبلاغ عبر منصة بلاغات مباني طرابلس*`;
-            
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(message);
-            
-            // Open WhatsApp
-            window.open(`https://wa.me/96171897079?text=${encodedMessage}`, '_blank');
-        });
-        
-        // Statistics
-        function updateStatistics() {
-            // Update total reports
-            const totalEl = document.getElementById('totalReports');
-            totalEl.textContent = parseInt(totalEl.textContent) + 1;
-            
-            // Update high danger if applicable
-            const dangerLevel = document.querySelector('input[name="danger"]:checked').value;
-            if (dangerLevel === 'عالية') {
-                const highDangerEl = document.getElementById('highDanger');
-                highDangerEl.textContent = parseInt(highDangerEl.textContent) + 1;
-            }
-        }
-        
-        // Call Number
-        function callNumber(number) {
-            if (confirm(`هل تريد الاتصال بالرقم ${number}؟`)) {
-                window.location.href = `tel:${number}`;
-            }
-        }
-        
-        // Open WhatsApp
-        function openWhatsApp() {
-            window.open('https://wa.me/96171897079', '_blank');
-        }
-        
-        // Open Map
-        function openMap() {
-            window.open('https://maps.google.com/?q=طرابلس+لبنان', '_blank');
-        }
-        
-        // Close Modal
-        function closeModal() {
-            successModal.classList.remove('active');
-        }
-        
-        // Share Report
-        function shareReport() {
-            const trackingNum = trackingNumber.textContent;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'بلاغ مبنى خطر في طرابلس',
-                    text: `تم تقديم بلاغ عن مبنى خطر في طرابلس. رقم المتابعة: ${trackingNum}`,
-                    url: window.location.href
-                });
-            } else {
-                // Fallback: Copy to clipboard
-                navigator.clipboard.writeText(`رقم متابعة بلاغي: ${trackingNum}`);
-                alert('تم نسخ رقم المتابعة إلى الحافظة');
-            }
-        }
-        
-        // Contact Developer
-        function contactDeveloper() {
-            const options = [
-                {text: 'الاتصال هاتفياً', icon: 'phone', action: () => callNumber('+96181400899')},
-                {text: 'إرسال إيميل', icon: 'envelope', action: () => window.location.href = 'mailto:mhammadhallak085@gmail.com?subject=تطبيق بلاغات مباني طرابلس'},
-                {text: 'إرسال واتساب', icon: 'whatsapp', action: () => window.open('https://wa.me/96181400899', '_blank')}
-            ];
-            
-            let message = 'اختر طريقة التواصل مع المطور:\n\n';
-            options.forEach((opt, index) => {
-                message += `${index + 1}. ${opt.text}\n`;
-            });
-            
-            const choice = prompt(message);
-            if (choice && options[choice - 1]) {
-                options[choice - 1].action();
-            }
-        }
-        
-        // Initialize statistics from localStorage
-        function initStatistics() {
-            const reports = JSON.parse(localStorage.getItem('buildingReports') || '[]');
-            if (reports.length > 0) {
-                document.getElementById('totalReports').textContent = reports.length;
-                
-                const highDangerCount = reports.filter(r => r.dangerLevel === 'عالية').length;
-                document.getElementById('highDanger').textContent = highDangerCount;
-                
-                const followedUpCount = reports.filter(r => r.status === 'تم المتابعة').length;
-                document.getElementById('followedUp').textContent = followedUpCount;
-                
-                // Get unique areas (simplified)
-                const areas = new Set();
-                reports.forEach(r => {
-                    if (r.address) areas.add(r.address.split(',')[0]);
-                });
-                document.getElementById('areas').textContent = Math.min(areas.size, 99);
-            }
-        }
-        
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', function() {
-            initStatistics();
-            
-            // Animate sections on scroll
-            const observerOptions = {
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.section').forEach(section => {
-                observer.observe(section);
-            });
-        });
-        
-        // Prevent scrolling when modal is open
-        successModal.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-        }, { passive: false });
     </script>
 </body>
 </html>

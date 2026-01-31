@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مايا - الآلة الحاسبة الذكية</title>
+    <title>مايا - الآلة الحاسبة الذكية المتقدمة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #6d28d9;
+            --primary-light: #8b5cf6;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --text: #374151;
+            --error: #ef4444;
+            --success: #10b981;
+        }
+        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: #333;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,28 +38,31 @@
         
         .container {
             width: 100%;
-            max-width: 500px;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            max-width: 550px;
+            background-color: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 60px rgba(109, 40, 217, 0.1);
             overflow: hidden;
+            margin-bottom: 20px;
         }
         
         header {
-            background: linear-gradient(to right, #4a6ee0, #8a5de3);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            padding: 25px;
+            padding: 28px;
             text-align: center;
             position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
+            font-size: 32px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .language-selector {
@@ -56,67 +71,75 @@
             top: 20px;
             display: flex;
             gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
         }
         
         .lang-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
+            padding: 6px 16px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 500;
             transition: all 0.3s;
         }
         
         .lang-btn.active {
             background: white;
-            color: #4a6ee0;
+            color: var(--primary);
+            border-color: white;
         }
         
         .assistant-section {
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eaeaea;
+            padding: 24px;
+            background-color: var(--light);
+            border-bottom: 1px solid #e5e7eb;
         }
         
         .assistant-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 18px;
+            margin-bottom: 20px;
         }
         
         .avatar {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(to right, #4a6ee0, #8a5de3);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             color: white;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.3);
+            border: 3px solid white;
         }
         
         .voice-controls {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
+            margin-bottom: 20px;
         }
         
         .voice-btn {
-            background: linear-gradient(to right, #4a6ee0, #8a5de3);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            font-size: 24px;
+            width: 80px;
+            height: 80px;
+            font-size: 28px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(74, 110, 224, 0.4);
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.4);
             transition: all 0.3s;
             display: flex;
             align-items: center;
@@ -125,172 +148,291 @@
         
         .voice-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(74, 110, 224, 0.6);
+            box-shadow: 0 15px 30px rgba(109, 40, 217, 0.5);
         }
         
         .voice-btn.listening {
             animation: pulse 1.5s infinite;
-            background: linear-gradient(to right, #ff4757, #ff3838);
+            background: linear-gradient(135deg, var(--error) 0%, #f87171 100%);
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
         
         .status {
-            font-size: 14px;
-            color: #666;
+            font-size: 15px;
+            color: #6b7280;
             text-align: center;
-            min-height: 20px;
+            min-height: 22px;
             margin-top: 5px;
+            font-weight: 500;
         }
         
         .conversation {
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
             margin-top: 15px;
-            padding: 10px;
+            padding: 16px;
             background: white;
-            border-radius: 10px;
-            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
         .message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 15px;
-            max-width: 80%;
+            margin-bottom: 12px;
+            padding: 10px 16px;
+            border-radius: 18px;
+            max-width: 85%;
+            line-height: 1.5;
+            font-size: 15px;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .user-message {
-            background-color: #e3f2fd;
+            background-color: #e0e7ff;
+            color: var(--primary);
             margin-left: auto;
             margin-right: 0;
             border-bottom-right-radius: 5px;
+            box-shadow: 0 2px 5px rgba(109, 40, 217, 0.1);
         }
         
         .maya-message {
-            background-color: #f1f3f4;
+            background-color: #f3f4f6;
+            color: var(--text);
             margin-right: auto;
             margin-left: 0;
             border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         
         .calculator-section {
-            padding: 25px;
+            padding: 28px;
         }
         
         .display {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background-color: #f8fafc;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 24px;
             text-align: right;
-            font-size: 32px;
-            min-height: 80px;
+            font-size: 36px;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
             overflow-x: auto;
-            border: 2px solid #eaeaea;
-            font-weight: 600;
+            border: 2px solid #e2e8f0;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: 1px;
+            box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .display.ltr {
+            direction: ltr;
+            text-align: left;
+            justify-content: flex-start;
         }
         
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 16px;
         }
         
         button {
             border: none;
-            border-radius: 10px;
-            padding: 18px 5px;
-            font-size: 20px;
+            border-radius: 14px;
+            padding: 20px 5px;
+            font-size: 22px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
         
         button:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            transform: translateY(1px);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
         }
         
         .number {
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: white;
+            color: var(--dark);
+            border: 1px solid #e5e7eb;
         }
         
         .operation {
-            background-color: #e3f2fd;
-            color: #4a6ee0;
+            background-color: #f0f9ff;
+            color: var(--primary);
+            border: 1px solid #bae6fd;
         }
         
         .equals {
-            background: linear-gradient(to right, #4a6ee0, #8a5de3);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
             grid-column: span 2;
+            border: none;
         }
         
         .clear {
-            background-color: #ffebee;
-            color: #ff4757;
+            background-color: #fef2f2;
+            color: var(--error);
+            border: 1px solid #fecaca;
         }
         
         .voice-command {
-            background-color: #f3e5f5;
-            color: #8a5de3;
+            background: linear-gradient(135deg, var(--secondary) 0%, #34d399 100%);
+            color: white;
+            border: none;
+        }
+        
+        .examples {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 25px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .examples h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+        
+        .examples ul {
+            list-style: none;
+            padding-right: 10px;
+        }
+        
+        .examples li {
+            padding: 8px 0;
+            color: #4b5563;
+            border-bottom: 1px dashed #e5e7eb;
+            font-size: 14.5px;
+        }
+        
+        .examples li:last-child {
+            border-bottom: none;
+        }
+        
+        .examples .arabic {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .examples .english {
+            color: var(--secondary);
+            font-weight: 600;
         }
         
         footer {
             text-align: center;
-            padding: 15px;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            color: #6b7280;
             font-size: 14px;
-            margin-top: 20px;
+            margin-top: 10px;
+        }
+        
+        .footer-highlight {
+            color: var(--primary);
+            font-weight: 600;
         }
         
         @media (max-width: 600px) {
             .container {
-                border-radius: 15px;
+                border-radius: 20px;
+                max-width: 100%;
             }
             
             header {
-                padding: 20px 15px;
+                padding: 22px 18px;
             }
             
             h1 {
-                font-size: 24px;
+                font-size: 26px;
             }
             
             .language-selector {
                 position: static;
                 justify-content: center;
-                margin-top: 10px;
+                margin-top: 12px;
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .display {
-                font-size: 28px;
-                padding: 15px;
-                min-height: 70px;
+                font-size: 30px;
+                padding: 18px;
+                min-height: 80px;
             }
             
             button {
-                padding: 15px 5px;
-                font-size: 18px;
+                padding: 16px 5px;
+                font-size: 20px;
             }
+            
+            .avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .voice-btn {
+                width: 70px;
+                height: 70px;
+                font-size: 24px;
+            }
+        }
+        
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c5c5c5;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a5a5a5;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-robot"></i> مايا - الآلة الحاسبة الذكية</h1>
-            <p>تحدث مع مايا لإجراء العمليات الحسابية</p>
+            <h1><i class="fas fa-robot"></i> مايا - الحاسبة الذكية المتقدمة</h1>
+            <p>تحدث بلهجتك العربية - أفهم اللهجات المختلفة</p>
             <div class="language-selector">
                 <button class="lang-btn active" id="arabic-btn">العربية</button>
                 <button class="lang-btn" id="english-btn">English</button>
@@ -303,8 +445,8 @@
                     <i class="fas fa-robot"></i>
                 </div>
                 <div>
-                    <h3>مساعدتك مايا</h3>
-                    <p>انقر على زر الميكروفون وابدأ بالتحدث</p>
+                    <h3>مساعدتك الذكية مايا</h3>
+                    <p>أفهم اللهجات العربية المختلفة: فصحى، مصرية، شامية، لبنانية، خليجية</p>
                 </div>
             </div>
             
@@ -312,11 +454,11 @@
                 <button class="voice-btn" id="voice-btn">
                     <i class="fas fa-microphone"></i>
                 </button>
-                <div class="status" id="status">انقر على الميكروفون وابدأ بالتحدث</div>
+                <div class="status" id="status">انقر على الميكروفون وتحدث بلهجتك</div>
             </div>
             
             <div class="conversation" id="conversation">
-                <div class="message maya-message">مرحبًا! أنا مايا، مساعدتك الذكية. قل "مرحبا مايا" ثم اطلب مني إجراء عملية حسابية مثل "١٢٣ ناقص ١٢٠"</div>
+                <div class="message maya-message">أهلاً! أنا مايا، الحاسبة الذكية المتقدمة. أستطيع فهم جميع اللهجات العربية. جرب قول: "يا مايا، احسبلي ثلاثة آلاف وخمسمية وخمسة وعشرين زائد مليونين وسبعمائة ألف"</div>
             </div>
         </section>
         
@@ -348,11 +490,22 @@
                 <button class="equals" onclick="calculate()">=</button>
                 <button class="voice-command" onclick="startVoiceCommand()"><i class="fas fa-microphone"></i></button>
             </div>
+            
+            <div class="examples">
+                <h3><i class="fas fa-lightbulb"></i> أمثلة على ما يمكنك قوله:</h3>
+                <ul>
+                    <li><span class="arabic">"مايا، احسب خمسة وعشرين ألف زائد مية ألف"</span> <span class="english">(25,000 + 100,000)</span></li>
+                    <li><span class="arabic">"ثلاثة ملايين وربع ناقص مليونين"</span> <span class="english">(3,250,000 - 2,000,000)</span></li>
+                    <li><span class="arabic">"خمسمية وخمسة وستين ألف ضرب اثنين"</span> <span class="english">(565,000 × 2)</span></li>
+                    <li><span class="arabic">"عشرة ملايين ونص قسمة خمسة"</span> <span class="english">(10,500,000 ÷ 5)</span></li>
+                </ul>
+            </div>
         </section>
     </div>
     
     <footer>
-        <p>تم التطوير باستخدام HTML, CSS, و JavaScript | مايا - الآلة الحاسبة الذكية</p>
+        <p><span class="footer-highlight">مايا</span> - الحاسبة الذكية المتقدمة التي تفهم <span class="footer-highlight">جميع اللهجات العربية</span> وتدعم <span class="footer-highlight">الملايين والمليارات</span></p>
+        <p>تم التطوير باستخدام HTML, CSS, و JavaScript - تدعم جميع المتصفحات الحديثة</p>
     </footer>
 
     <script>
@@ -370,6 +523,62 @@
         let isListening = false;
         let displayValue = '0';
         let lastResult = null;
+        let userName = 'محمد'; // اسم افتراضي
+        
+        // قواعد فهم اللهجات العربية للأرقام
+        const arabicNumberWords = {
+            // الأرقام الأساسية
+            'صفر': 0, 'واحد': 1, 'احد': 1, 'واحدة': 1, 'احدى': 1, 'اثنين': 2, 'اثنان': 2, 
+            'اثنتين': 2, 'ثلاثة': 3, 'ثلاث': 3, 'اربعة': 4, 'أربعة': 4, 'اربعه': 4, 'اربع': 4,
+            'خمسة': 5, 'خمس': 5, 'ستة': 6, 'ست': 6, 'سبعة': 7, 'سبع': 7, 'ثمانية': 8, 'ثمان': 8,
+            'تسعة': 9, 'تسع': 9, 'عشرة': 10, 'عشر': 10,
+            
+            // المركبات (11-19)
+            'احد عشر': 11, 'اثنا عشر': 12, 'اثنتا عشر': 12, 'ثلاثة عشر': 13, 'اربع عشر': 14,
+            'خمسة عشر': 15, 'ستة عشر': 16, 'سبعة عشر': 17, 'ثمانية عشر': 18, 'تسعة عشر': 19,
+            
+            // عشرات
+            'عشرين': 20, 'عشرون': 20, 'ثلاثين': 30, 'ثلاثون': 30, 'اربعين': 40, 'اربعون': 40,
+            'خمسين': 50, 'خمسون': 50, 'ستين': 60, 'ستون': 60, 'سبعين': 70, 'سبعون': 70,
+            'ثمانين': 80, 'ثمانون': 80, 'تسعين': 90, 'تسعون': 90,
+            
+            // المئات
+            'مية': 100, 'مائة': 100, 'ميتين': 200, 'مائتين': 200, 'ثلاثمية': 300, 'ثلاثمائة': 300,
+            'اربعمية': 400, 'اربعمائة': 400, 'خمسمية': 500, 'خمسمائة': 500, 'ستمية': 600, 'ستمائة': 600,
+            'سبعمية': 700, 'سبعمائة': 700, 'ثمانمية': 800, 'ثمانمائة': 800, 'تسعمية': 900, 'تسعمائة': 900,
+            
+            // الآلاف والملايين والمليارات
+            'الف': 1000, 'الفين': 2000, 'الفين': 2000, 'الاف': 1000, 'آلاف': 1000,
+            'مليون': 1000000, 'مليونين': 2000000, 'ملايين': 1000000, 'مليار': 1000000000, 'مليارات': 1000000000,
+            
+            // كسور
+            'نص': 0.5, 'نصف': 0.5, 'ربع': 0.25, 'ثلث': 1/3, 'ثلثين': 2/3, 'ثلثان': 2/3,
+            
+            // مصطلحات اللهجات
+            // مصرية
+            'تلاتة': 3, 'أربعة': 4, 'خمسة': 5, 'ستة': 6, 'سبعة': 7, 'تمانية': 8, 'تسعة': 9,
+            'عشرين': 20, 'تلاتين': 30, 'أربعين': 40, 'خمسين': 50, 'ستين': 60, 'سبعين': 70,
+            'تمانين': 80, 'تسعين': 90, 'مية': 100, 'ميتين': 200, 'تلاتمية': 300,
+            
+            // شامية ولبنانية
+            'تلات': 3, 'اربع': 4, 'خمس': 5, 'ست': 6, 'سبع': 7, 'تمان': 8, 'تسع': 9,
+            'عشرين': 20, 'تلاتين': 30, 'اربعين': 40, 'خمسين': 50, 'ستين': 60, 'سبعين': 70,
+            'تمانين': 80, 'تسعين': 90, 'مية': 100, 'ميتين': 200, 'تلاتمية': 300,
+            
+            // خليجية
+            'ثلاث': 3, 'أربع': 4, 'خمس': 5, 'ست': 6, 'سبع': 7, 'ثمان': 8, 'تسع': 9,
+            'عشرين': 20, 'ثلاثين': 30, 'أربعين': 40, 'خمسين': 50, 'ستين': 60, 'سبعين': 70,
+            'ثمانين': 80, 'تسعين': 90, 'مية': 100, 'ميتين': 200, 'ثلاثمية': 300,
+        };
+        
+        // مصطلحات العمليات الحسابية بلهجات مختلفة
+        const operationWords = {
+            'زائد': '+', 'plus': '+', 'مع': '+', 'و': '+', 'جمع': '+', 'اضف': '+',
+            'ناقص': '-', 'minus': '-', 'اطرح': '-', 'بدون': '-', 'شيل': '-', 'اخصم': '-',
+            'ضرب': '*', 'مضروب': '*', 'multiplied': '*', 'في': '*', 'times': '*',
+            'على': '/', 'divid': '/', 'قسمة': '/', 'تقسيم': '/', 'part': '/',
+            'يساوي': '=', 'equal': '=', 'نتيجة': '=', 'كم': '=', 'how': '='
+        };
         
         // تهيئة Web Speech API
         function initializeSpeechRecognition() {
@@ -389,7 +598,7 @@
             recognition.onstart = function() {
                 isListening = true;
                 voiceBtn.classList.add('listening');
-                status.textContent = currentLanguage === 'arabic' ? 'مايا تستمع إليك...' : 'Maya is listening...';
+                status.textContent = currentLanguage === 'arabic' ? 'مايا تستمع إليك... تحدث الآن' : 'Maya is listening... speak now';
             };
             
             recognition.onresult = function(event) {
@@ -399,7 +608,11 @@
             
             recognition.onerror = function(event) {
                 console.error('خطأ في التعرف على الصوت:', event.error);
-                status.textContent = currentLanguage === 'arabic' ? 'حدث خطأ، يرجى المحاولة مرة أخرى' : 'An error occurred, please try again';
+                if (event.error === 'not-allowed') {
+                    status.textContent = currentLanguage === 'arabic' ? 'الوصول إلى الميكروفون غير مسموح. يرجى تفعيله.' : 'Microphone access not allowed. Please enable it.';
+                } else {
+                    status.textContent = currentLanguage === 'arabic' ? 'حدث خطأ، يرجى المحاولة مرة أخرى' : 'An error occurred, please try again';
+                }
                 stopListening();
             };
             
@@ -440,7 +653,127 @@
             
             isListening = false;
             voiceBtn.classList.remove('listening');
-            status.textContent = currentLanguage === 'arabic' ? 'انقر على الميكروفون وابدأ بالتحدث' : 'Click the microphone and start speaking';
+            status.textContent = currentLanguage === 'arabic' ? 'انقر على الميكروفون وتحدث بلهجتك' : 'Click the microphone and speak in your dialect';
+        }
+        
+        // تحويل النص العربي إلى أرقام
+        function arabicTextToNumber(text) {
+            // تنظيف النص
+            let cleanText = text.toLowerCase()
+                .replace(/[٠١٢٣٤٥٦٧٨٩]/g, function(d) {
+                    return String.fromCharCode(d.charCodeAt(0) - 1632);
+                })
+                .replace(/[۰۱۲۳۴۵۶۷۸۹]/g, function(d) {
+                    return String.fromCharCode(d.charCodeAt(0) - 1776);
+                })
+                .replace(/,/g, '')
+                .replace(/و\s+/g, ' و ')
+                .replace(/\s+/g, ' ')
+                .trim();
+            
+            // إذا كان النص يحتوي على أرقام إنجليزية فقط
+            if (/^\d+$/.test(cleanText)) {
+                return parseInt(cleanText);
+            }
+            
+            // تحويل النص إلى أرقام
+            let total = 0;
+            let currentNumber = 0;
+            let lastNumber = 0;
+            const words = cleanText.split(' ');
+            
+            for (let word of words) {
+                // تجاهل كلمات العمليات
+                if (operationWords[word]) continue;
+                
+                // تحقق إذا كانت الكلمة تمثل رقمًا
+                if (arabicNumberWords[word] !== undefined) {
+                    const value = arabicNumberWords[word];
+                    
+                    if (value >= 1000) {
+                        // آلاف، ملايين، مليارات
+                        total += (currentNumber + lastNumber) * value;
+                        currentNumber = 0;
+                        lastNumber = 0;
+                    } else if (value >= 100) {
+                        // مئات
+                        currentNumber += value;
+                    } else if (value >= 20) {
+                        // عشرات
+                        currentNumber += value;
+                    } else if (value >= 11 && value <= 19) {
+                        // أعداد مركبة (11-19)
+                        currentNumber += value;
+                    } else if (value >= 1 && value <= 10) {
+                        // أعداد وحيدة
+                        lastNumber = value;
+                    } else if (value < 1) {
+                        // كسور
+                        currentNumber += lastNumber * value;
+                        lastNumber = 0;
+                    }
+                } else if (word === 'و') {
+                    // كلمة "و" للربط
+                    continue;
+                } else {
+                    // محاولة استخراج الرقم من النص
+                    const numMatch = word.match(/\d+/);
+                    if (numMatch) {
+                        currentNumber += parseInt(numMatch[0]);
+                    }
+                }
+            }
+            
+            total += currentNumber + lastNumber;
+            return total;
+        }
+        
+        // استخراج التعبير الرياضي من النص العربي
+        function extractMathExpressionFromArabic(text) {
+            // تنظيف النص
+            let cleanText = text.toLowerCase()
+                .replace(/مايا|احسب|حساب|حاسبه|احسبلي|كم|لي|مع|من|عند|عندي|بدي|ابغى|اريد/g, '')
+                .replace(/[؟?،,.]/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+            
+            // تقسيم النص إلى كلمات
+            const words = cleanText.split(' ');
+            let expression = '';
+            let currentNumber = '';
+            let collectingNumber = false;
+            
+            for (let word of words) {
+                // إذا كانت كلمة عملية
+                if (operationWords[word]) {
+                    if (collectingNumber) {
+                        expression += arabicTextToNumber(currentNumber.trim());
+                        currentNumber = '';
+                        collectingNumber = false;
+                    }
+                    expression += operationWords[word];
+                } 
+                // إذا كانت كلمة "و" وليست عملية
+                else if (word === 'و' && collectingNumber) {
+                    currentNumber += ' و ';
+                }
+                // إذا كانت كلمة رقم أو جزء من رقم
+                else if (arabicNumberWords[word] !== undefined || /\d+/.test(word)) {
+                    currentNumber += word + ' ';
+                    collectingNumber = true;
+                }
+                // تجاهل الكلمات الأخرى
+                else {
+                    continue;
+                }
+            }
+            
+            // إضافة الرقم الأخير إذا كان موجودًا
+            if (collectingNumber && currentNumber.trim()) {
+                expression += arabicTextToNumber(currentNumber.trim());
+            }
+            
+            return expression || null;
         }
         
         // معالجة الأوامر الصوتية
@@ -448,10 +781,10 @@
             // إضافة رسالة المستخدم للمحادثة
             addMessageToConversation(transcript, 'user');
             
-            // تنظيف النص من علامات الترقيم والتحويل للأحرف اللاتينية للأرقام العربية
+            // تنظيف النص
             let cleanTranscript = transcript.toLowerCase();
             
-            // استبدال الأرق العربية بالأرقام الإنجليزية للحساب
+            // استبدال الأرقام العربية والإنجليزية
             cleanTranscript = cleanTranscript
                 .replace(/[٠١٢٣٤٥٦٧٨٩]/g, function(d) {
                     return String.fromCharCode(d.charCodeAt(0) - 1632);
@@ -460,19 +793,44 @@
                     return String.fromCharCode(d.charCodeAt(0) - 1776);
                 });
             
-            // تحويل الأوامر العربية والإنجليزية
+            // معالجة بناءً على اللغة
             if (currentLanguage === 'arabic') {
-                // معالجة الأوامر العربية
-                if (cleanTranscript.includes('مرحبا') && cleanTranscript.includes('مايا')) {
-                    const response = 'أهلاً بك! أنا مايا، مساعدتك الذكية. كيف يمكنني مساعدتك اليوم؟';
-                    speak(response);
-                    addMessageToConversation(response, 'maya');
-                    return;
+                // تحيات وتعريف
+                if (cleanTranscript.includes('مرحبا') || cleanTranscript.includes('اهلا') || cleanTranscript.includes('السلام')) {
+                    if (cleanTranscript.includes('مايا')) {
+                        // استخراج الاسم إذا ذكره المستخدم
+                        const nameMatch = cleanTranscript.match(/اسمي (\w+)|انا (\w+)|(\w+) اسمي/);
+                        if (nameMatch) {
+                            userName = nameMatch[1] || nameMatch[2] || nameMatch[3] || 'محمد';
+                        }
+                        
+                        const response = `أهلاً وسهلاً ${userName}! أنا مايا، الحاسبة الذكية المتقدمة. أستطيع فهم جميع اللهجات العربية. كيف يمكنني مساعدتك اليوم؟`;
+                        speak(response);
+                        addMessageToConversation(response, 'maya');
+                        return;
+                    }
                 }
                 
-                if (cleanTranscript.includes('احسب') || cleanTranscript.includes('حساب') || cleanTranscript.includes('كم')) {
-                    // استخراج التعبير الرياضي من النص
-                    let expression = extractMathExpression(cleanTranscript, 'arabic');
+                // أوامر الحساب
+                if (cleanTranscript.includes('احسب') || cleanTranscript.includes('حساب') || cleanTranscript.includes('كم') || 
+                    cleanTranscript.includes('زائد') || cleanTranscript.includes('ناقص') || cleanTranscript.includes('ضرب') || 
+                    cleanTranscript.includes('على') || /\d+/.test(cleanTranscript)) {
+                    
+                    // استخراج التعبير الرياضي
+                    let expression = extractMathExpressionFromArabic(cleanTranscript);
+                    
+                    if (!expression) {
+                        // محاولة بديلة: البحث عن أي أرقام وعمليات مباشرة
+                        const simpleExpression = cleanTranscript
+                            .replace(/[^0-9+\-*/.()]/g, ' ')
+                            .replace(/\s+/g, '')
+                            .replace(/x/g, '*')
+                            .replace(/÷/g, '/');
+                        
+                        if (simpleExpression.length > 1) {
+                            expression = simpleExpression;
+                        }
+                    }
                     
                     if (expression) {
                         try {
@@ -485,26 +843,53 @@
                             updateDisplay();
                             
                             // التحدث بالنتيجة
-                            const response = `الناتج هو ${convertToArabicNumber(result)}`;
+                            let resultText = '';
+                            if (result >= 1000000000) {
+                                const billions = Math.floor(result / 1000000000);
+                                const remainder = result % 1000000000;
+                                resultText = `${convertToArabicWords(billions)} مليار`;
+                                if (remainder > 0) {
+                                    resultText += ` و ${convertToArabicWords(remainder)}`;
+                                }
+                            } else if (result >= 1000000) {
+                                const millions = Math.floor(result / 1000000);
+                                const remainder = result % 1000000;
+                                resultText = `${convertToArabicWords(millions)} مليون`;
+                                if (remainder > 0) {
+                                    resultText += ` و ${convertToArabicWords(remainder)}`;
+                                }
+                            } else if (result >= 1000) {
+                                const thousands = Math.floor(result / 1000);
+                                const remainder = result % 1000;
+                                resultText = `${convertToArabicWords(thousands)} ألف`;
+                                if (remainder > 0) {
+                                    resultText += ` و ${convertToArabicWords(remainder)}`;
+                                }
+                            } else {
+                                resultText = convertToArabicWords(result);
+                            }
+                            
+                            const response = `الناتج هو ${resultText} (${formatNumber(result)})`;
                             speak(response);
                             addMessageToConversation(response, 'maya');
                         } catch (error) {
-                            const response = 'عذراً، لم أفهم العملية الحسابية. يرجى المحاولة مرة أخرى.';
+                            console.error('خطأ في الحساب:', error);
+                            const response = 'عذراً، لم أفهم العملية الحسابية. يرجى المحاولة مرة أخرى بصيغة مختلفة.';
                             speak(response);
                             addMessageToConversation(response, 'maya');
                         }
                     } else {
-                        const response = 'لم أستطع التعرف على العملية الحسابية. يرجى قول شيء مثل "١٢٣ زائد ١٢٠" أو "٥٠ ناقص ٢٠".';
+                        const response = 'لم أستطع التعرف على العملية الحسابية. يرجى قول شيء مثل "خمسة وعشرين ألف زائد مية ألف" أو "ثلاثة ملايين ناقص مليون".';
                         speak(response);
                         addMessageToConversation(response, 'maya');
                     }
                 } else {
-                    const response = 'يمكنني مساعدتك في العمليات الحسابية. قل لي مثلاً "احسب لي ١٢٣ زائد ١٢٠"';
+                    const response = 'يمكنني مساعدتك في العمليات الحسابية المعقدة. قل لي مثلاً "ثلاثة ملايين وربع زائد مليونين ونص"';
                     speak(response);
                     addMessageToConversation(response, 'maya');
                 }
             } else {
-                // معالجة الأوامر الإنجليزية
+                // معالجة الأوامر الإنجليزية (نفس الكود السابق)
                 if (cleanTranscript.includes('hello') && cleanTranscript.includes('maya')) {
                     const response = 'Hello! I am Maya, your smart assistant. How can I help you today?';
                     speak(response);
@@ -514,9 +899,13 @@
                 
                 if (cleanTranscript.includes('calculate') || cleanTranscript.includes('what is') || cleanTranscript.includes('how much')) {
                     // استخراج التعبير الرياضي من النص
-                    let expression = extractMathExpression(cleanTranscript, 'english');
+                    let expression = cleanTranscript
+                        .replace(/[^0-9+\-*/.()]/g, ' ')
+                        .replace(/\s+/g, '')
+                        .replace(/x/g, '*')
+                        .replace(/÷/g, '/');
                     
-                    if (expression) {
+                    if (expression.length > 1) {
                         try {
                             // حساب النتيجة
                             const result = eval(expression);
@@ -527,7 +916,7 @@
                             updateDisplay();
                             
                             // التحدث بالنتيجة
-                            const response = `The result is ${result}`;
+                            const response = `The result is ${formatNumber(result)}`;
                             speak(response);
                             addMessageToConversation(response, 'maya');
                         } catch (error) {
@@ -548,48 +937,59 @@
             }
         }
         
-        // استخراج التعبير الرياضي من النص
-        function extractMathExpression(text, language) {
-            // إزالة الكلمات غير المرغوبة
-            let cleanedText = text.replace(/calculate|what is|how much|equals|احسب|حساب|كم|يساوي/g, '');
+        // تحويل الأرقام إلى كلمات عربية
+        function convertToArabicWords(number) {
+            if (number === 0) return 'صفر';
             
-            // استبدال الكلمات بعمليات رياضية
-            if (language === 'arabic') {
-                cleanedText = cleanedText
-                    .replace(/\s+/g, '')
-                    .replace(/زائد|plus|\+/, '+')
-                    .replace(/ناقص|minus|\-/, '-')
-                    .replace(/ضرب|multipliedby|\*|x/, '*')
-                    .replace(/على|dividedby|\//, '/')
-                    .replace(/فاصلة|point|\./, '.');
+            const units = ['', 'واحد', 'اثنان', 'ثلاثة', 'أربعة', 'خمسة', 'ستة', 'سبعة', 'ثمانية', 'تسعة'];
+            const teens = ['عشرة', 'أحد عشر', 'اثنا عشر', 'ثلاثة عشر', 'أربعة عشر', 'خمسة عشر', 'ستة عشر', 'سبعة عشر', 'ثمانية عشر', 'تسعة عشر'];
+            const tens = ['', '', 'عشرون', 'ثلاثون', 'أربعون', 'خمسون', 'ستون', 'سبعون', 'ثمانون', 'تسعون'];
+            const hundreds = ['', 'مائة', 'مئتان', 'ثلاثمائة', 'أربعمائة', 'خمسمائة', 'ستمائة', 'سبعمائة', 'ثمانمائة', 'تسعمائة'];
+            
+            if (number < 10) return units[number];
+            if (number < 20) return teens[number - 10];
+            if (number < 100) {
+                const unit = number % 10;
+                const ten = Math.floor(number / 10);
+                return unit === 0 ? tens[ten] : `${units[unit]} و ${tens[ten]}`;
+            }
+            if (number < 1000) {
+                const hundred = Math.floor(number / 100);
+                const remainder = number % 100;
+                return remainder === 0 ? hundreds[hundred] : `${hundreds[hundred]} و ${convertToArabicWords(remainder)}`;
+            }
+            
+            return number.toString();
+        }
+        
+        // تنسيق الأرقام بفواصل
+        function formatNumber(num) {
+            if (currentLanguage === 'arabic') {
+                return new Intl.NumberFormat('ar-EG').format(num);
             } else {
-                cleanedText = cleanedText
-                    .replace(/\s+/g, '')
-                    .replace(/plus|\+/, '+')
-                    .replace(/minus|\-/, '-')
-                    .replace(/multipliedby|\*|x/, '*')
-                    .replace(/dividedby|\//, '/')
-                    .replace(/point|\./, '.');
+                return new Intl.NumberFormat('en-US').format(num);
             }
-            
-            // التحقق من أن النص يحتوي على أرقام وعمليات رياضية فقط
-            const mathRegex = /^[\d\+\-\*\/\.]+$/;
-            if (mathRegex.test(cleanedText)) {
-                return cleanedText;
-            }
-            
-            return null;
         }
         
         // التحدث بالنص
         function speak(text) {
             if ('speechSynthesis' in window) {
+                // إلغاء أي كلام سابق
+                window.speechSynthesis.cancel();
+                
                 const speech = new SpeechSynthesisUtterance();
                 speech.text = text;
                 speech.lang = currentLanguage === 'arabic' ? 'ar-SA' : 'en-US';
                 speech.rate = 0.9;
                 speech.pitch = 1;
                 speech.volume = 1;
+                
+                // اختيار صوت عربي إذا كان متاحًا
+                const voices = window.speechSynthesis.getVoices();
+                const arabicVoice = voices.find(voice => voice.lang.startsWith('ar'));
+                if (arabicVoice && currentLanguage === 'arabic') {
+                    speech.voice = arabicVoice;
+                }
                 
                 window.speechSynthesis.speak(speech);
             }
@@ -606,20 +1006,14 @@
             conversation.scrollTop = conversation.scrollHeight;
         }
         
-        // تحويل الأرقام للعربية
-        function convertToArabicNumber(num) {
-            const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-            const decimalPoint = '٫';
-            
-            return String(num).replace(/\d/g, digit => arabicNumbers[digit]).replace('.', decimalPoint);
-        }
-        
         // تحديث العرض
         function updateDisplay() {
             if (currentLanguage === 'arabic') {
-                display.textContent = convertToArabicNumber(displayValue);
+                display.textContent = formatNumber(displayValue);
+                display.classList.remove('ltr');
             } else {
-                display.textContent = displayValue;
+                display.textContent = formatNumber(displayValue);
+                display.classList.add('ltr');
             }
         }
         
@@ -674,7 +1068,7 @@
                 addMessageToConversation(userMessage, 'user');
                 
                 const mayaMessage = currentLanguage === 'arabic' ? 
-                    `الناتج هو ${convertToArabicNumber(result)}` : `The result is ${result}`;
+                    `الناتج هو ${formatNumber(result)}` : `The result is ${formatNumber(result)}`;
                 addMessageToConversation(mayaMessage, 'maya');
                 speak(mayaMessage);
             } catch (error) {
@@ -702,11 +1096,11 @@
             document.documentElement.dir = 'rtl';
             
             // تحديث النصوص
-            document.querySelector('h1').innerHTML = '<i class="fas fa-robot"></i> مايا - الآلة الحاسبة الذكية';
-            document.querySelector('header p').textContent = 'تحدث مع مايا لإجراء العمليات الحسابية';
-            document.querySelector('.assistant-header h3').textContent = 'مساعدتك مايا';
-            document.querySelector('.assistant-header p').textContent = 'انقر على زر الميكروفون وابدأ بالتحدث';
-            status.textContent = 'انقر على الميكروفون وابدأ بالتحدث';
+            document.querySelector('h1').innerHTML = '<i class="fas fa-robot"></i> مايا - الحاسبة الذكية المتقدمة';
+            document.querySelector('header p').textContent = 'تحدث بلهجتك العربية - أفهم اللهجات المختلفة';
+            document.querySelector('.assistant-header h3').textContent = 'مساعدتك الذكية مايا';
+            document.querySelector('.assistant-header p').textContent = 'أفهم اللهجات العربية المختلفة: فصحى، مصرية، شامية، لبنانية، خليجية';
+            status.textContent = 'انقر على الميكروفون وتحدث بلهجتك';
             
             // تحديث العرض
             updateDisplay();
@@ -725,11 +1119,11 @@
             document.documentElement.dir = 'ltr';
             
             // تحديث النصوص
-            document.querySelector('h1').innerHTML = '<i class="fas fa-robot"></i> Maya - Smart Calculator';
-            document.querySelector('header p').textContent = 'Talk to Maya to perform calculations';
-            document.querySelector('.assistant-header h3').textContent = 'Your Assistant Maya';
-            document.querySelector('.assistant-header p').textContent = 'Click the microphone and start speaking';
-            status.textContent = 'Click the microphone and start speaking';
+            document.querySelector('h1').innerHTML = '<i class="fas fa-robot"></i> Maya - Advanced Smart Calculator';
+            document.querySelector('header p').textContent = 'Speak in your dialect - I understand different accents';
+            document.querySelector('.assistant-header h3').textContent = 'Your Smart Assistant Maya';
+            document.querySelector('.assistant-header p').textContent = 'I understand different Arabic dialects: Formal, Egyptian, Levantine, Lebanese, Gulf';
+            status.textContent = 'Click the microphone and speak in your dialect';
             
             // تحديث العرض
             updateDisplay();
@@ -748,13 +1142,20 @@
             initializeSpeechRecognition();
             updateDisplay();
             
+            // تهيئة الأصوات المتاحة
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = function() {
+                    // الأصوات متاحة الآن
+                };
+            }
+            
             // رسالة ترحيبية عند التحميل
             setTimeout(() => {
                 const welcomeMessage = currentLanguage === 'arabic' ? 
-                    'مرحباً! أنا مايا، مساعدتك الذكية. قل "مرحبا مايا" ثم اطلب مني إجراء عملية حسابية.' : 
-                    'Hello! I am Maya, your smart assistant. Say "hello Maya" then ask me to perform a calculation.';
+                    'مرحباً! أنا مايا، الحاسبة الذكية المتقدمة. أستطيع فهم جميع اللهجات العربية. جرب قول: "يا مايا، احسبلي ثلاثة آلاف وخمسمية وخمسة وعشرين زائد مليونين وسبعمائة ألف"' : 
+                    'Hello! I am Maya, the advanced smart calculator. I understand different Arabic dialects. Try saying: "Maya, calculate three thousand five hundred twenty five plus two million seven hundred thousand"';
                 speak(welcomeMessage);
-            }, 1000);
+            }, 1500);
         });
     </script>
 </body>
